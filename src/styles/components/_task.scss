@@ -1,0 +1,72 @@
+.task_list_item{
+  @include set-center(block);
+  max-width: $defaultBox_maxWidth;
+  background-color: $backgroundColor;
+  padding: $defaultBox_padding;
+  margin-top: 20px;
+  position: relative;
+
+  &.doing{
+
+    .task_actions .stopSvg {
+      fill: $mainColor;
+
+      &:hover {
+        fill: $actionBtnColor;
+      }
+    }
+
+    &::before {
+      content: " ";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 10px;
+      background-color: $mainColor;
+    }
+  }
+
+  .task_title {
+    width: 45%;
+    display: inline-block;
+    @include set-fontsize(16px);
+  }
+  .task_owner {
+    width: 30%;
+    display: inline-block;
+  }
+  .task_time {
+    width: 10%;
+    display: inline-block;
+  }
+  .task_actions {
+    width: 15%;
+    @include set-fontsize(25px);
+    @include set-flexBox(space-between);
+    display: inline-flex;
+
+    svg {
+      fill: $actionBtnColor;
+      cursor: pointer;
+
+      &:hover {
+        fill: $mainColor;
+      }
+    }
+  }
+}
+
+.done_tasks_list{
+  margin-top: 60px;
+
+  .task_list_item {
+    @include set-opacity(0.3);
+    cursor: default;
+
+    .task_actions {
+      display: none;
+    }
+  }
+}

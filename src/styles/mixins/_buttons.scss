@@ -1,0 +1,21 @@
+$btn_padding: 10px 40px;
+
+@mixin btn_color(
+  $color: $mainColor,
+  $background: $secondaryColor
+) {
+  background-color: $background;
+  color: $color;
+  &:hover {
+    background-color: $color;
+    color: $background;
+  }
+}
+
+.btn {
+  padding: $btn_padding;
+  border: none;
+  cursor: pointer;
+  @include set-fontsize(14px);
+  @include btn_color();
+}

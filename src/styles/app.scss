@@ -1,0 +1,41 @@
+
+//##########################
+//     RESET CSS IMPORTS
+//##########################
+@import "./lib/reset.scss";
+
+
+//##########################
+//     MIXINS IMPORTS
+//##########################
+@import "./mixins/resize";
+@import "./mixins/typografy";
+@import "./mixins/colors";
+@import "./mixins/buttons";
+@import "./mixins/general";
+
+//##########################
+//     App Defaults
+//##########################
+$defaultBox_padding: 20px;
+$defaultBox_maxWidth: 800px;
+
+//##########################
+//     Main App style
+//##########################
+.App {
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+    height: 100vh;
+    color : #fff;
+}
+
+
+//##########################
+//     COMPONENTS IMPORTS
+//##########################
+@import "./components/header";
+@import "./components/addtask";
+@import "./components/tasks";
+@import "./components/task";

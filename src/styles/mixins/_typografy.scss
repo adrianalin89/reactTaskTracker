@@ -1,0 +1,48 @@
+@mixin set-fontface(
+  $font-name,
+  $file-name,
+  $weight: normal, $style: normal
+) {
+  @font-face {
+    font-family: quote($font-name);
+    src: url('./../fonts/' + $file-name + '.eot');
+    src: url('./../fonts/' + $file-name + '.eot?#iefix')  format('embedded-opentype'),
+    url('./../fonts/' + $file-name + '.woff') format('woff'),
+    url('./../fonts/' + $file-name + '.ttf')  format('truetype'),
+    url('./../fonts/' + $file-name + '.svg##{$font-name}')  format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@function calculateRem($size) {
+  $remSize: $size / $font-size-base;
+  @return $remSize * 1rem;
+}
+
+@mixin set-fontsize($size, $base: 14) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@include set-fontface(Roboto,Roboto/Roboto-Regular);
+@include set-fontface(Roboto-Bold,Roboto/Roboto-Bold);
+@include set-fontface(Roboto-Italic,Roboto/Roboto-Italic);
+
+$font-size-base: 12px;
+
+@mixin bold-font($family-name: "Roboto") {
+  font-family: $family-name + "-Bold", $family-name, serif;
+}
+
+@mixin bold-italic($family-name: "Roboto") {
+  font-family: $family-name + "-Italic", $family-name, serif;
+}
+
+html{
+  font-family: "Roboto", "Ubuntu", serif;
+}
+
+h1 {
+  @include set-fontsize(18px);
+}

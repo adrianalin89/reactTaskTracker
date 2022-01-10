@@ -1,0 +1,21 @@
+header {
+  @include set-flexBox(space-between);
+  padding: $defaultBox_padding;
+  background-color: $backgroundColor;
+  margin-bottom: 60px;
+  h1 {
+    align-self: center;
+  }
+  .btn.add {
+    span {
+      line-height: 30px;
+      vertical-align: top;
+      @include bold-font();
+      @include set-fontsize(16px);
+    }
+    svg {
+      @include set-fontsize(22px);
+      margin-left: 5px;
+    }
+  }
+}

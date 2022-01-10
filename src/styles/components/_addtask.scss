@@ -1,0 +1,46 @@
+.popup_bg {
+  @include set-absolute(0,0,0,0);
+  background-color: rgba(0,0,0,0.8);
+  z-index: 9;
+}
+
+form.add-task-form {
+  max-width: $defaultBox_maxWidth;
+  margin-top: 100px;
+  background-color: $backgroundColor;
+  padding: $defaultBox_padding;
+  @include set-flexBox(space-between);
+  @include set-center(flex);
+
+  .error_message {
+    @include set-absolute(0,0,auto,0);
+    padding: $defaultBox_padding;
+    background-color: $mainColor;
+    @include set-fontsize(16px);
+    color: $backgroundColor;
+
+    .clouse {
+      float: right;
+      @include set-fontsize(20px);
+      cursor: pointer;
+    }
+  }
+
+  .form-control {
+
+    input[type=text] {
+      padding: 10px;
+      padding-left: 0;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #fff;
+      color: $mainColor;
+      @include set-fontsize(14px);
+
+      &:focus, &:focus-visible {
+        outline: none;
+        border-bottom: 1px solid $mainColor;
+      }
+    }
+  }
+}

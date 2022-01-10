@@ -1,0 +1,16 @@
+.task_box {
+  .no_tasks, .no_tasks_row {
+    max-width: $defaultBox_maxWidth;
+    background-color: $backgroundColor;
+    padding: $defaultBox_padding;
+    @include set-center(block);
+  }
+  h2 {
+    max-width: $defaultBox_maxWidth;
+    border-bottom: solid 1px $mainColor;
+    padding: $defaultBox_padding;
+    color: $mainColor;
+    @include set-center(block);
+    @include bold-font();
+  }
+}
