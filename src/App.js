@@ -5,7 +5,7 @@ import AddTask from "./components/AddTask"
 import bgImage from './images/wallpaper.jpg'
 
 function App() {
-    const phpJsonServer = 'https://tasktracker.local.muntz.nl/tasks.php'
+    const phpJsonServer = 'https://tasktracker.local.muntz.nl/phpServer/api/'
     const [showAdd, setShowAdd] = useState(false)
     const [tasksData, setTaskList] = useState([])
     const [tasksList, tasksDispatch] = useReducer(tasksActions, tasksData)
@@ -22,7 +22,7 @@ function App() {
     }, [])
 
     const fetchTasks = async () => {
-        const res = await fetch(phpJsonServer)
+        const res = await fetch(phpJsonServer + 'get.php')
         const data = await res.json()
         return data
     }
@@ -75,16 +75,18 @@ function App() {
                 return tasksList.filter( (task) => task.id !== action.id )
 
             case 'addTask':
-                /*const resNewTask = async () => { return await fetch(phpJsonServer,{
+                const resNewTask = async () => { return await fetch(phpJsonServer + 'add.php',{
                     method: 'POST',
                     headers: {
                         'Constent-type': 'application/json',
                     },
                     body: JSON.stringify(action),
                 }) }
+
                 console.log(resNewTask)
-                const newTask = await resNewTask.json()
-                return [...tasksList, newTask]*/
+                //const newTask = await resNewTask.json()
+                //console.log(newTask)
+                //return [...tasksList, newTask]
 
                 const id = Math.floor(Math.random() * 1000) + 1
                 const newTask = {

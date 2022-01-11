@@ -2,9 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Includes SCSS styling, react icons, php backend api.
+
+# PHP API JSON server
+The server is in public/phpServer folder and you can run the api/setup.php to get the db setup and ready to go!\
+@todo add a env file for the credentials.\
+@todo add some sort of auth to the api endpoint.
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+@todo run the setup endpoint on a build comand
 
 ### `npm start`
 
@@ -68,3 +77,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### ToDo List
+- fix the initial load from api
+- find a way to update stat async
+- made an error component to display api errors
+- when adding a new task move cursor on the task input field
+- double tap a task will bring a new component for editing it
+- track time on server and on backend
+- add router and create a configuration page
+- let user change background and color style
+- implement auth
+- learn how to deploy the project
+- order task by dragging
+- creat a new btn to clear the board
+- new view, add a month/year select and display a graf whit time spend each day
+- clicking on a day shows task don in that day
+- show total time spend per day
+- push notification if time reaches 8h
+- change mints display from 60 to 100
