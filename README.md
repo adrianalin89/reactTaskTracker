@@ -80,8 +80,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 ### ToDo List
-- fix the initial load from api
-- find a way to update stat async
+- fix DELETE headers cross-origin
 - made an error component to display api errors
 - when adding a new task move cursor on the task input field
 - double tap a task will bring a new component for editing it

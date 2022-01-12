@@ -20,8 +20,8 @@ if($result) {
             'id' =>   $result->id,
             'task' => $result->task,
             'owner' => $result->owner,
-            'doing' => $result->doing,
-            'done' => $result->done,
+            'doing' => $result->doing ? true : false,
+            'done' => $result->done ? true : false,
             'time' => $result->time
         ]);
     } else {
@@ -32,8 +32,8 @@ if($result) {
                 'id' => $id,
                 'task' => $task,
                 'owner' => $owner,
-                'doing' => $doing,
-                'done' => $done,
+                'doing' => $doing ? true : false,
+                'done' => $done ? true : false,
                 'time' => $time
             ]);
         }

@@ -7,40 +7,68 @@ import bgImage from './images/wallpaper.jpg'
 function App() {
     const phpJsonServer = 'https://tasktracker.local.muntz.nl/phpServer/api/'
     const [showAdd, setShowAdd] = useState(false)
-    const [tasksData, setTaskList] = useState([])
-    const [tasksList, tasksDispatch] = useReducer(tasksActions, tasksData)
+    const [tasksList, tasksDispatch] = useReducer(tasksActions, [])
 
     useEffect( () => {
         const getTasks = async () => {
             const tasksFromServer = await fetchTasks()
-            console.log(tasksFromServer)
-            setTaskList(tasksFromServer)
+            tasksDispatch({
+                type: 'loadData',
+                payload: tasksFromServer
+            })
         }
         getTasks()
-
-        console.log(tasksData)
     }, [])
 
-    const fetchTasks = async () => {
-        const res = await fetch(phpJsonServer + 'get.php')
-        const data = await res.json()
-        return data
+    async function fetchTasks() {
+        try {
+            const res = await fetch(phpJsonServer + 'get.php')
+            const data = await res.json()
+            return data
+        } catch (err) {
+            console.log(err)
+        }
     }
 
-    function startTimer(id) {
-        console.log(id)
-        console.log('start')
-        //trak time frontend
+    async function addTaskAPI(payload) {
+        try {
+            const res = await fetch(phpJsonServer + 'add.php',{
+                method: 'POST',
+                headers: {
+                    'Constent-type': 'application/json',
+                },
+                body: payload,
+            })
+            const data = await res.json()
+            console.log(data)
+            return data
+        } catch (err) {
+            console.log(err)
+            return []
+        }
     }
 
-    function stopTimer(id) {
-        console.log(id)
-        console.log('stop')
-        //stop on frontend and get time from sv
+    async function deleteTaskAPI(payload) {
+        try {
+            const res = await fetch(phpJsonServer + 'delete.php',{
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: payload,
+            })
+            console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     function tasksActions(tasksList, action) {
         switch (action.type) {
+
+            case 'loadData':
+                tasksList = action.payload
+                return tasksList
 
             case 'doingTask':
                 //send request to sv
@@ -50,12 +78,12 @@ function App() {
                 tasksList = tasksList.map( (task) => task.id === action.id ?
                     { ...task, doing: true } : task
                 )
-                startTimer(action.id)
+               // startTimer(action.id)
                 return tasksList
 
             case 'stopTask':
                 //send request to sv
-                stopTimer(action.id)
+               // stopTimer(action.id)
                 return tasksList.map( (task) => task.id === action.id ?
                     { ...task, doing: false } : task
                 )
@@ -67,36 +95,11 @@ function App() {
                 )
 
             case 'deleteTask':
-               /* const res = async () => {
-                    await fetch(phpJsonServer,{
-                        method: 'DELETE',
-                    })
-                }*/
+                deleteTaskAPI(JSON.stringify({'id' : action.id}))
                 return tasksList.filter( (task) => task.id !== action.id )
 
             case 'addTask':
-                const resNewTask = async () => { return await fetch(phpJsonServer + 'add.php',{
-                    method: 'POST',
-                    headers: {
-                        'Constent-type': 'application/json',
-                    },
-                    body: JSON.stringify(action),
-                }) }
-
-                console.log(resNewTask)
-                //const newTask = await resNewTask.json()
-                //console.log(newTask)
-                //return [...tasksList, newTask]
-
-                const id = Math.floor(Math.random() * 1000) + 1
-                const newTask = {
-                    id:id,
-                    task: action.task,
-                    owner: action.owner,
-                    doing: false,
-                    done: false,
-                    time: 0
-                }
+                const newTask = addTaskAPI(JSON.stringify(action))
                 return [...tasksList, newTask]
 
             default:

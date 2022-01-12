@@ -22,21 +22,19 @@ const Tasks = ( { tasks, tasksDispatch } ) => {
             }
 
             { tasks.some( task => task.done === true ) &&
-                <>
-                    <ul className='done_tasks_list'>
-                        {
-                            tasks.map(
-                                (task) => (
-                                    task.done &&
-                                    <Task key={task.id}
-                                        task={task}
-                                        tasksDispatch={tasksDispatch}
-                                    />
-                                )
+                <ul className='done_tasks_list'>
+                    {
+                        tasks.map(
+                            (task) => (
+                                task.done &&
+                                <Task key={task.id}
+                                    task={task}
+                                    tasksDispatch={tasksDispatch}
+                                />
                             )
-                        }
-                    </ul>
-                </>
+                        )
+                    }
+                </ul>
             }
         </>
     );

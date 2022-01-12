@@ -4,7 +4,7 @@ header('Content-type: application/vnd.api+json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: DELETE');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-type,
-Access-Control-Allow-Methods, Authorization, X-Requested-With');
+ Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 include_once '../Database.php';
 include_once '../ModelTasks.php';
